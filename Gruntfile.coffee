@@ -8,6 +8,8 @@ module.exports = (grunt) ->
 
   grunt.initConfig
           coffee :
+            compile :
+              files : expandCoffeePath('src/javascripts/','dist/js')
             test :
               files : expandCoffeePath('spec/coffee','spec/js')
 
