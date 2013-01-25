@@ -7,7 +7,9 @@
      "grunt-contrib-concat"    : "git://github.com/gruntjs/grunt-contrib-concat.git",
      "grunt-contrib-jasmine"   : "git://github.com/gruntjs/grunt-contrib-jasmine.git",
      "grunt-contrib-watch"     : "git://github.com/gruntjs/grunt-contrib-watch.git",
-     "grunt-contrib-requirejs" : "git://github.com/gruntjs/grunt-contrib-requirejs.git"
+     "grunt-contrib-requirejs" : "git://github.com/gruntjs/grunt-contrib-requirejs.git",
+     "grunt-contrib-copy"      : "git://github.com/gruntjs/grunt-contrib-copy.git"
+     
   },
   "jam": {
     "baseUrl"      : ".",
@@ -19,8 +21,5 @@
       "underscore": null,
       "backbone-localStorage": null
     }
-  },
- "scripts": {
-    "test": "grunt jasmine"
-  },
+  }
 }

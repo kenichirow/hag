@@ -7,7 +7,6 @@ module.exports = (grunt) ->
                )
 
   grunt.initConfig
-
           coffee :
             compile :
               files : expandCoffeePath('src/javascripts/','dist/javascripts')
@@ -15,28 +14,44 @@ module.exports = (grunt) ->
               files : expandCoffeePath('spec/coffee','spec/js')
 
           concat :
-             dist :
-               src  : ['']
-               dest : ['src/javascripts/vendor.js']
+             vendor :
+               src  : [
+                 'src/javascripts/vendor/jquery/dist/jquery.js',
+                 'src/javascripts/vendor/underscore/underscore.js',
+                 'src/javascripts/vendor/backbone/backbone.js',
+                 'src/javascripts/vendor/backbone-localStorage/main.js',
+                 'src/javascripts/vendor/d3/d3.v2.js'
+               ]
+               dest : 'dist/javascripts/vendor.js'
              app : 
-               src  : ['src/javascripts/main/**/*.js']
-               dest : ['src/javascripts/vendor.js']
+               src : [
+                 'src/javascripts/app/**/*.js',
+               ]
+               dest : 'dist/javascripts/app.js'
 
           jasmine :
             src : 'dist/**/*.js'
             options :
               specs : 'spec/js/*.js'
 
+          copy: 
+            main: 
+              files: [
+                src: ['src/index.html']
+                dest: 'dist/index.html'
+                filter: 'isFile' 
+              ]
+
           watch : 
-            files : ['src/**/*.coffee','spec/**/*.coffee']
-            tasks : ['coffee','jasmine']
+            files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','Gruntfile.coffee']
+            tasks : ['coffee','concat','jasmine','copy']
 
 
-
+  grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
-  grunt.registerTask 'build', ['coffee','jasmine']
+  grunt.registerTask 'build', ['coffee','concat','jasmine','copy']
