@@ -11,12 +11,16 @@
   },
   "jam": {
     "baseUrl"      : ".",
-    "packageDir"   : "vendor",
+    "packageDir"   : "src/javascripts/vendor",
     "dependencies" : {
       "jquery": null,
+      "d3": null,
       "backbone": null,
       "underscore": null,
       "backbone-localStorage": null
     }
-  }
+  },
+ "scripts": {
+    "test": "grunt jasmine"
+  },
 }

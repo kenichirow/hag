@@ -7,15 +7,24 @@ module.exports = (grunt) ->
                )
 
   grunt.initConfig
+
           coffee :
             compile :
-              files : expandCoffeePath('src/javascripts/','dist/js')
+              files : expandCoffeePath('src/javascripts/','dist/javascripts')
             test :
               files : expandCoffeePath('spec/coffee','spec/js')
 
-          jasmine : 
-            src : 'dist/*.js'
-            options : 
+          concat :
+             dist :
+               src  : ['']
+               dest : ['src/javascripts/vendor.js']
+             app : 
+               src  : ['src/javascripts/main/**/*.js']
+               dest : ['src/javascripts/vendor.js']
+
+          jasmine :
+            src : 'dist/**/*.js'
+            options :
               specs : 'spec/js/*.js'
 
           watch : 
@@ -24,10 +33,10 @@ module.exports = (grunt) ->
 
 
 
-
-  grunt.loadNpmTasks 'grunt-contrib-requirejs'
-  grunt.loadNpmTasks 'grunt-contrib-jasmine'
-  grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-jasmine'
+  grunt.loadNpmTasks 'grunt-contrib-requirejs'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
 
   grunt.registerTask 'build', ['coffee','jasmine']
