@@ -1,0 +1,22 @@
+{
+  "name": "hag",
+  "version": "0.0.1",
+  "devDependencies" : {
+     "grunt"                   : "git://github.com/gruntjs/grunt.git#master",
+     "grunt-contrib-coffee"    : "git://github.com/gruntjs/grunt-contrib-coffee.git#master",
+     "grunt-contrib-concat"    : "git://github.com/gruntjs/grunt-contrib-concat.git",
+     "grunt-contrib-jasmine"   : "git://github.com/gruntjs/grunt-contrib-jasmine.git",
+     "grunt-contrib-watch"     : "git://github.com/gruntjs/grunt-contrib-watch.git",
+     "grunt-contrib-requirejs" : "git://github.com/gruntjs/grunt-contrib-requirejs.git"
+  },
+  "jam": {
+    "baseUrl"      : ".",
+    "packageDir"   : "vendor",
+    "dependencies" : {
+      "jquery": null,
+      "backbone": null,
+      "underscore": null,
+      "backbone-localStorage": null
+    }
+  }
+}
