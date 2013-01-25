@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
 
   expandCoffeePath = (coffeePath,destDir)->
-               grun.file.expandMapping([coffeePath + '/**/*.coffee'], destDir, 
+               grunt.file.expandMapping([coffeePath + '/**/*.coffee'], destDir,
                       rename: (destBase, destPath) ->
                         return destBase + destPath.slice(coffeePath.length, destPath.length).replace(/\.coffee$/, '.js')
                )
@@ -20,7 +20,6 @@ module.exports = (grunt) ->
             files : ['src/**/*.coffee','spec/**/*.coffee']
             tasks : ['coffee','jasmine']
 
-          requirejs :
 
 
 
