@@ -8,7 +8,8 @@
      "grunt-contrib-jasmine"   : "git://github.com/gruntjs/grunt-contrib-jasmine.git",
      "grunt-contrib-watch"     : "git://github.com/gruntjs/grunt-contrib-watch.git",
      "grunt-contrib-requirejs" : "git://github.com/gruntjs/grunt-contrib-requirejs.git",
-     "grunt-contrib-copy"      : "git://github.com/gruntjs/grunt-contrib-copy.git"
+     "grunt-contrib-copy"      : "git://github.com/gruntjs/grunt-contrib-copy.git",
+     "grunt-contrib-stylus"    : "git://github.com/gruntjs/grunt-contrib-stylus"
      
   },
   "jam": {

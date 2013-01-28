@@ -24,9 +24,7 @@ module.exports = (grunt) ->
                ]
                dest : 'dist/javascripts/vendor.js'
              app : 
-               src : [
-                 'src/javascripts/app/**/*.js',
-               ]
+               src : ['src/javascripts/app/**/*.js']
                dest : 'dist/javascripts/app.js'
 
           jasmine :
@@ -34,8 +32,8 @@ module.exports = (grunt) ->
             options :
               specs : 'spec/js/*.js'
 
-          copy: 
-            main: 
+          copy:
+            main:
               files: [
                 src: ['src/index.html']
                 dest: 'dist/index.html'
@@ -52,6 +50,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-jasmine'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
+  grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
   grunt.registerTask 'build', ['coffee','concat','jasmine','copy']
