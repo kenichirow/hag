@@ -9,7 +9,7 @@ module.exports = (grunt) ->
   grunt.initConfig
           coffee :
             compile :
-              files : expandCoffeePath('src/javascripts/','dist/javascripts')
+              files : expandCoffeePath('src/javascripts/','dist/javascripts/')
             test :
               files : expandCoffeePath('spec/coffee','spec/js')
 
@@ -19,7 +19,6 @@ module.exports = (grunt) ->
                  'src/javascripts/vendor/jquery/dist/jquery.js',
                  'src/javascripts/vendor/underscore/underscore.js',
                  'src/javascripts/vendor/backbone/backbone.js',
-                 'src/javascripts/vendor/backbone-localStorage/main.js',
                  'src/javascripts/vendor/d3/d3.v2.js'
                ]
                dest : 'dist/javascripts/vendor.js'
@@ -28,7 +27,10 @@ module.exports = (grunt) ->
                dest : 'dist/javascripts/app.js'
 
           jasmine :
-            src : 'dist/**/*.js'
+            src : [
+              'dist/vendor.js',
+              'dist/app.js'
+            ]
             options :
               specs : 'spec/js/*.js'
 
@@ -40,9 +42,16 @@ module.exports = (grunt) ->
                 filter: 'isFile' 
               ]
 
+            require:
+              files: [
+                src: ['src/javascripts/vendor/require.js']
+                dest: 'dist/javascripts/require.js'
+                filter: 'isFile' 
+              ]
+
           watch : 
             files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','Gruntfile.coffee']
-            tasks : ['coffee','concat','jasmine','copy']
+            tasks : ['coffee','concat','jasmine','copy:main']
 
 
   grunt.loadNpmTasks 'grunt-contrib-copy'
@@ -53,4 +62,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
-  grunt.registerTask 'build', ['coffee','concat','jasmine','copy']
+  grunt.registerTask 'build', ['coffee','concat','jasmine','copy:main']
