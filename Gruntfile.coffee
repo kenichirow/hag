@@ -53,7 +53,14 @@ module.exports = (grunt) ->
             files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','Gruntfile.coffee']
             tasks : ['coffee','concat','jasmine','copy:main']
 
+          connect:
+             server:
+               options:
+                 port: 8888
+                 base: './dist'
 
+
+  grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-concat'
@@ -62,4 +69,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
+  grunt.registerTask 'server', ['connect:server:keepalive']
   grunt.registerTask 'build', ['coffee','concat','jasmine','copy:main']
