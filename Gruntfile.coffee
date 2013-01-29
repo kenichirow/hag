@@ -5,7 +5,6 @@ module.exports = (grunt) ->
                       rename: (destBase, destPath) ->
                         return destBase + destPath.slice(coffeePath.length, destPath.length).replace(/\.coffee$/, '.js')
                )
-
   grunt.initConfig
           coffee :
             compile :
@@ -22,7 +21,7 @@ module.exports = (grunt) ->
                  'src/javascripts/vendor/d3/d3.v2.js'
                ]
                dest : 'dist/javascripts/vendor.js'
-             app : 
+             app :
                src : ['src/javascripts/app/**/*.js']
                dest : 'dist/javascripts/app.js'
 
@@ -51,9 +50,9 @@ module.exports = (grunt) ->
 
           watch : 
             files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','Gruntfile.coffee']
-            tasks : ['coffee','concat','jasmine','copy:main']
+            tasks : ['build']
 
-          connect:
+           connect:
              server:
                options:
                  port: 8888
