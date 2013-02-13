@@ -6,6 +6,15 @@ module.exports = (grunt) ->
                         return destBase + destPath.slice(coffeePath.length, destPath.length).replace(/\.coffee$/, '.js')
                )
   grunt.initConfig
+
+          compass : 
+            dist :
+              options:
+                sassDir: 'src/stylesheets/'
+                cssDir: 'dist/stylesheets/'
+
+
+        
           coffee :
             compile :
               files : expandCoffeePath('src/javascripts/','dist/javascripts/')
@@ -49,15 +58,19 @@ module.exports = (grunt) ->
               ]
 
           watch : 
-            files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','Gruntfile.coffee']
+            files : ['src/**/*.coffee','spec/coffee/**/*.coffee','src/index.html','src/stylesheets/**/*','Gruntfile.coffee']
             tasks : ['build']
 
            connect:
              server:
                options:
-                 port: 8888
+                 port: 8000
                  base: './dist'
 
+           reload:
+             proxy: 
+               host: 'localhost'
+               port: 8000           
 
   grunt.loadNpmTasks 'grunt-contrib-connect'
   grunt.loadNpmTasks 'grunt-contrib-copy'
@@ -67,6 +80,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-contrib-compass'
+  grunt.loadNpmTasks 'grunt-reload'
 
   grunt.registerTask 'server', ['connect:server:keepalive']
-  grunt.registerTask 'build', ['coffee','concat','jasmine','copy:main']
+  grunt.registerTask 'build', ['coffee','compass','concat','jasmine','copy:main','reload']
